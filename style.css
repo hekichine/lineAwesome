@@ -364,7 +364,11 @@ back-to-top{
 li {
   list-style-type: none;
 }
-
+@media (max-width: 1440px){
+  .main{
+    padding: 0 15px;
+  }
+}
 @media screen and (max-width: 1200px) {
   .aside {
     display: none;
@@ -384,7 +388,7 @@ li {
   }
 
   .wrapper {
-    padding: 20px 0;
+    padding: 20px 5px;
   }
 
   .search {
