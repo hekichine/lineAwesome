@@ -99,6 +99,7 @@ back-to-top{
   transition: 0.1s;
   border-radius: 3px;
   border: 1px solid transparent;
+  padding-inline-start: 8px;
 }
 
 .icon_item:hover {
