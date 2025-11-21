@@ -18,18 +18,42 @@ class iconElement extends HTMLElement {
     this.svg = this.querySelector("svg");
     this.svgContent = this.svg.outerHTML;
 
+
     this.addEventListener("click", () => {
-      const TempText = document.createElement("input");
-      TempText.value = this.svgContent;
-      document.body.appendChild(TempText);
-      TempText.select();
-      document.execCommand("copy");
-      document.body.removeChild(TempText);
-      copied.classList.add("show-copied");
-      setTimeout(() => {
-        copied.classList.remove("show-copied");
-      }, 500);
+      if(this.statusDownload){
+        this.handleDownload();
+      }else{
+        this.handleCopy();
+      }
     });
+  }
+  get statusDownload(){
+    let status = document.getElementById('download_image').checked;
+    return status;
+  }
+  handleCopy(){
+    const TempText = document.createElement("input");
+    TempText.value = this.svgContent;
+    document.body.appendChild(TempText);
+    TempText.select();
+    document.execCommand("copy");
+    document.body.removeChild(TempText);
+    copied.classList.add("show-copied");
+    setTimeout(() => {
+      copied.classList.remove("show-copied");
+    }, 500);
+  }
+  handleDownload(){
+    let svg = this.svgContent;
+    let svg_name = this.querySelector(".icon_text").innerHTML;
+    let svg_data = new Blob([svg], { type: "image/svg+xml" });
+    let svg_url = URL.createObjectURL(svg_data);
+    let a = document.createElement("a");
+    a.href = svg_url;
+    a.download = svg_name + ".svg";
+    a.click();
+    URL.revokeObjectURL(svg_url);
+    a.remove();
   }
 }
 customElements.define("icon-element", iconElement);

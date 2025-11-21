@@ -418,3 +418,19 @@ li {
     padding: 0;
   }
 }
+
+
+.toolbars{
+  position: fixed;
+  top: 50%;
+  right: 0;
+  padding: 10px 20px;
+  background: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  user-select: none;
+  input,label{
+    cursor: pointer;
+  }
+}
